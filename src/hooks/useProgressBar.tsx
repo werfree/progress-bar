@@ -9,8 +9,8 @@ export enum LOADING_STATE {
   COMPLETED = "completed",
 }
 interface ProgressBarHookReturn{
-  incrementTotalApiCalls: (inc: number) => void
-  incrementCompletedApiCalls: (n?: number) => void
+  incrementTotalSteps: (inc: number) => void
+  incrementCompletedSteps: (n?: number) => void
   progressBarLoadingState: LOADING_STATE
   ProgressBarComponent: React.FC<ProgressBarComponentProps> 
 };
@@ -20,52 +20,52 @@ interface ProgressBarComponentProps extends NoProgressBarProps,Omit<ProgressBarP
 
 
 const useProgressBar = ():ProgressBarHookReturn => {
-  const [totalApiCalls, setTotalApiCalls] = useState(0);
-  const [completedApiCalls, setCompletedApiCalls] = useState(0);
+  const [totalSteps, setTotalSteps] = useState(0);
+  const [completedSteps, setCompletedSteps] = useState(0);
   const [progressWidth, setProgressWidth] = useState<number>(0);
   const [progressBarLoadingState, setProgressBarLoadingState] =
     useState<LOADING_STATE>(LOADING_STATE.INITIAL);
 
-  const incrementTotalApiCalls = (inc: number) => {
-    setTotalApiCalls((prev) => {
+  const incrementTotalSteps = (inc: number) => {
+    setTotalSteps((prev) => {
       if (prev === 0) {
         setProgressWidth(2); // We will start the progress bar from 2%
       }
       return prev + inc;
     });
   };
-  const incrementCompletedApiCalls = (n: number = 1) => {
-    setCompletedApiCalls((prev) => {
+  const incrementCompletedSteps = (n: number = 1) => {
+    setCompletedSteps((prev) => {
       return prev + n;
     });
   };
   useEffect(() => {
     if (
-      (completedApiCalls === totalApiCalls && totalApiCalls !== 0) ||
-      completedApiCalls > totalApiCalls
+      (completedSteps === totalSteps && totalSteps !== 0) ||
+      completedSteps > totalSteps
     ) {
-      setCompletedApiCalls(0);
-      setTotalApiCalls(0);
+      setCompletedSteps(0);
+      setTotalSteps(0);
       setProgressWidth(0);
       setProgressBarLoadingState(LOADING_STATE.COMPLETED);
-    } else if (completedApiCalls !== 0) {
+    } else if (completedSteps !== 0) {
       setProgressWidth(
-        Number(((completedApiCalls / totalApiCalls) * 100).toFixed(2))
+        Number(((completedSteps / totalSteps) * 100).toFixed(2))
       );
       setProgressBarLoadingState(LOADING_STATE.LOADING);
     }
-  }, [completedApiCalls, totalApiCalls]);
+  }, [completedSteps, totalSteps]);
   // Return the JSX for your hook component
   const displayProgressBar =
-    Number(progressWidth) === 0 || completedApiCalls === totalApiCalls;
+    Number(progressWidth) === 0 || completedSteps === totalSteps;
   const ProgressBarComponent: React.FC<ProgressBarComponentProps>  = ({noProgressBarStyle,progressBarContainerStyle,progressBarElementStyle}:ProgressBarComponentProps)=> {
     return displayProgressBar  ? <NoProgressBar noProgressBarStyle={noProgressBarStyle}/> : <ProgressBar progressBarContainerStyle={progressBarContainerStyle} progressBarElementStyle={progressBarElementStyle} progressWidth={progressWidth}/>
   };
   // const ProgressBarComponent: React.ReactNode = <ProgressBarWrapper progressWidth={progressWidth}/>;
 
   return {
-    incrementTotalApiCalls,
-    incrementCompletedApiCalls,
+    incrementTotalSteps,
+    incrementCompletedSteps,
     progressBarLoadingState,
     ProgressBarComponent,
   };

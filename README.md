@@ -1,4 +1,4 @@
-# React ProgressBar Hook
+# React Progress Hook
 
 A custom React hook for managing and displaying progress bars in React applications. This hook is designed to simplify the process of tracking progress for asynchronous tasks, such as API calls.
 
@@ -26,15 +26,15 @@ import { useProgressBar, LOADING_STATE } from "react-progress-bar-hook";
 
 const MyComponent = () => {
   const {
-    incrementTotalApiCalls,
-    incrementCompletedApiCalls,
+    incrementTotalSteps,
+    incrementCompletedSteps,
     progressBarLoadingState,
     ProgressBarComponent
   } = useProgressBar();
 
   // Example usage:
-  // Call incrementTotalApiCalls when initiating an API call
-  // Call incrementCompletedApiCalls when an API call is completed
+  // Call incrementTotalSteps when initiating progress process
+  // Call incrementCompletedSteps when on step or more steps are completed
 
   return (
     <div>
@@ -51,8 +51,8 @@ const MyComponent = () => {
 
 This hook returns an object with the following properties:
 
-- `incrementTotalApiCalls(inc: number)`: Function to increment the total number of API calls.
-- `incrementCompletedApiCalls(n?: number)`: Function to increment the number of completed API calls.
+- `incrementTotalSteps(inc: number)`: Function to increment the total number of steps.
+- `incrementCompletedSteps(n?: number)`: Function to increment the number of completed steps.
 - `progressBarLoadingState`: Current loading state of the progress bar (`LOADING_STATE` enum).
 - `ProgressBarComponent`: Component to render the progress bar.
 
