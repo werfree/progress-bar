@@ -1,5 +1,5 @@
 {
-  "name": "react-progress-bar-hook",
+  "name": "@werfree/react-progress-bar",
   "description": "A custom React hook for managing and displaying progress bars in React applications.",
   "keywords": [
     "react",
@@ -81,5 +81,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/werfree/progress-bar.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   }
 }
