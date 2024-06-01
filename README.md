@@ -1,4 +1,4 @@
-# React Progress Hook
+# React Progress Bar Hook
 
 A custom React hook for managing and displaying progress bars in React applications. This hook is designed to simplify the process of tracking progress for asynchronous tasks, such as API calls.
 
