@@ -1,1 +1,1 @@
-export { useProgressBar, LOADING_STATE } from "./hooks/useProgressBar";
+export { useProgressBar, LOADING_STATE } from './hooks/useProgressBar';

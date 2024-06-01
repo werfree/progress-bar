@@ -1,21 +1,20 @@
 .loading-bar-container {
-    background-color: #dfdfc3;
-    height: 2px;
-    width: 100%;
-    border-radius: 10px;
-    position: relative;
-  }
-  
-  .loading-bar-empty-container {
-    height: 2px;
-    background-color: #dfdfc3;
-  }
-  
-  .loading-bar-orange {
-    background-color: #ff9900;
-    height: 100%;
-    border-radius: 10px;
-    transition: 0.5s ease;
-    position: absolute;
-  }
-  
+  background-color: #dfdfc3;
+  height: 2px;
+  width: 100%;
+  border-radius: 10px;
+  position: relative;
+}
+
+.loading-bar-empty-container {
+  height: 2px;
+  background-color: #dfdfc3;
+}
+
+.loading-bar-orange {
+  background-color: #ff9900;
+  height: 100%;
+  border-radius: 10px;
+  transition: 0.5s ease;
+  position: absolute;
+}

@@ -1,25 +1,25 @@
 // Import React and useState hook
-import React,{ useEffect, useState } from "react";
-import NoProgressBar,{NoProgressBarProps} from "../components/NoProgressBar";
-import ProgressBar,{ProgressBarProps} from "../components/ProgressBar";
+import React, { useEffect, useState } from 'react';
+import NoProgressBar, { NoProgressBarProps } from '../components/NoProgressBar';
+import ProgressBar, { ProgressBarProps } from '../components/ProgressBar';
 // Define your hook component
 export enum LOADING_STATE {
-  INITIAL = "initial",
-  LOADING = "loading",
-  COMPLETED = "completed",
+  INITIAL = 'initial',
+  LOADING = 'loading',
+  COMPLETED = 'completed',
 }
-interface ProgressBarHookReturn{
-  incrementTotalSteps: (inc: number) => void
-  incrementCompletedSteps: (n?: number) => void
-  progressBarLoadingState: LOADING_STATE
-  ProgressBarComponent: React.FC<ProgressBarComponentProps> 
-};
-
-interface ProgressBarComponentProps extends NoProgressBarProps,Omit<ProgressBarProps,'progressWidth'>{
+interface ProgressBarHookReturn {
+  incrementTotalSteps: (inc: number) => void;
+  incrementCompletedSteps: (n?: number) => void;
+  progressBarLoadingState: LOADING_STATE;
+  ProgressBarComponent: React.FC<ProgressBarComponentProps>;
 }
 
+interface ProgressBarComponentProps
+  extends NoProgressBarProps,
+    Omit<ProgressBarProps, 'progressWidth'> {}
 
-const useProgressBar = ():ProgressBarHookReturn => {
+const useProgressBar = (): ProgressBarHookReturn => {
   const [totalSteps, setTotalSteps] = useState(0);
   const [completedSteps, setCompletedSteps] = useState(0);
   const [progressWidth, setProgressWidth] = useState<number>(0);
@@ -50,7 +50,7 @@ const useProgressBar = ():ProgressBarHookReturn => {
       setProgressBarLoadingState(LOADING_STATE.COMPLETED);
     } else if (completedSteps !== 0) {
       setProgressWidth(
-        Number(((completedSteps / totalSteps) * 100).toFixed(2))
+        Number(((completedSteps / totalSteps) * 100).toFixed(2)),
       );
       setProgressBarLoadingState(LOADING_STATE.LOADING);
     }
@@ -58,8 +58,20 @@ const useProgressBar = ():ProgressBarHookReturn => {
   // Return the JSX for your hook component
   const displayProgressBar =
     Number(progressWidth) === 0 || completedSteps === totalSteps;
-  const ProgressBarComponent: React.FC<ProgressBarComponentProps>  = ({noProgressBarStyle,progressBarContainerStyle,progressBarElementStyle}:ProgressBarComponentProps)=> {
-    return displayProgressBar  ? <NoProgressBar noProgressBarStyle={noProgressBarStyle}/> : <ProgressBar progressBarContainerStyle={progressBarContainerStyle} progressBarElementStyle={progressBarElementStyle} progressWidth={progressWidth}/>
+  const ProgressBarComponent: React.FC<ProgressBarComponentProps> = ({
+    noProgressBarStyle,
+    progressBarContainerStyle,
+    progressBarElementStyle,
+  }: ProgressBarComponentProps) => {
+    return displayProgressBar ? (
+      <NoProgressBar noProgressBarStyle={noProgressBarStyle} />
+    ) : (
+      <ProgressBar
+        progressBarContainerStyle={progressBarContainerStyle}
+        progressBarElementStyle={progressBarElementStyle}
+        progressWidth={progressWidth}
+      />
+    );
   };
   // const ProgressBarComponent: React.ReactNode = <ProgressBarWrapper progressWidth={progressWidth}/>;
 
@@ -72,4 +84,4 @@ const useProgressBar = ():ProgressBarHookReturn => {
 };
 
 // Export your hook component
-export  {useProgressBar};
+export { useProgressBar };

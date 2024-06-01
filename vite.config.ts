@@ -1,24 +1,24 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import tsConfigPaths from "vite-tsconfig-paths";
-import dts from "vite-plugin-dts";
-import { resolve } from "path";
-import * as packageJson from "./package.json";
-import string from "vite-plugin-string";
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import tsConfigPaths from 'vite-tsconfig-paths';
+import dts from 'vite-plugin-dts';
+import { resolve } from 'path';
+import * as packageJson from './package.json';
+import string from 'vite-plugin-string';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   css: {
     modules: {
-      localsConvention: "camelCaseOnly",
-      generateScopedName: "[local]__[hash:base64:5]",
+      localsConvention: 'camelCaseOnly',
+      generateScopedName: '[local]__[hash:base64:5]',
     },
   },
   build: {
     lib: {
-      entry: resolve("src", "main.ts"),
-      name: "progress-bar",
-      formats: ["es", "umd"],
+      entry: resolve('src', 'main.ts'),
+      name: 'progress-bar',
+      formats: ['es', 'umd'],
       fileName: (format) => `progress-bar.${format}.js`,
     },
     rollupOptions: {
@@ -26,7 +26,7 @@ export default defineConfig({
       output: {
         // Specify globals for external dependencies here
         globals: {
-          react: "React",
+          react: 'React',
         },
       },
     },
@@ -36,11 +36,11 @@ export default defineConfig({
     react(),
     tsConfigPaths(),
     dts({
-      outDir: "dist/types",
-      include: ["src"],
+      outDir: 'dist/types',
+      include: ['src'],
     }),
     string({
-      include: "**/*.css",
+      include: '**/*.css',
     }),
   ],
 });
