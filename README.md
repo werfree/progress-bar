@@ -21,6 +21,48 @@ yarn add react-progress-bar-hook
 To use the ProgressBar hook in your React application, simply import it and start using it in your components:
 
 ```typescript
+import React, { useEffect, useState } from 'react';
+import { useProgressBar, LOADING_STATE } from 'react-progress-bar-hook';
+
+const MyComponent = () => {
+  const {
+    incrementTotalSteps,
+    incrementCompletedSteps,
+    resetProgressBar,
+    progressBarLoadingState,
+    ProgressBarComponent,
+  } = useProgressBar();
+
+  useEffect(() => {
+    incrementTotalSteps(20);
+    const intervalId = setInterval(() => {
+      incrementCompletedSteps();
+    }, 1000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (progressBarLoadingState === LOADING_STATE.COMPLETED) {
+      resetProgressBar();
+    }
+  }, [progressBarLoadingState]);
+
+  return (
+    <div>
+      {/* Your component JSX */}
+      <ProgressBarComponent
+        progressBarContainerStyle={{ width: "90vw", height: "5px" }}
+        progressBarElementStyle={{ backgroundColor: "blue" }}
+      />
+      <div>Loading State: {progressBarLoadingState}</div>
+    </div>
+  );
+};
+
+export default MyComponent;
 import React from "react";
 import { useProgressBar, LOADING_STATE } from "react-progress-bar-hook";
 
@@ -37,9 +79,26 @@ const MyComponent = () => {
   // Call incrementCompletedSteps when on step or more steps are completed
 
   return (
-    <div>
-      {/* Your component JSX */}
-      <ProgressBarComponent />
+    <div style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      flexDirection: "column",
+      textAlign: 'center'
+    }}>
+      {/* Render the progress bar component with custom styles */}
+      <ProgressBarComponent
+        progressBarContainerStyle={{ width: "90vw", height: "5px" }}
+        progressBarElementStyle={{ backgroundColor: "blue" }}
+      />
+      {/* Display the current loading state */}
+      <div style={{
+        margin: "10px",
+        fontFamily: "sans-serif",
+        fontWeight: "bold"
+      }}>
+        Loading State: {progressBarLoadingState}
+      </div>
     </div>
   );
 };
@@ -53,6 +112,7 @@ This hook returns an object with the following properties:
 
 - `incrementTotalSteps(inc: number)`: Function to increment the total number of steps.
 - `incrementCompletedSteps(n?: number)`: Function to increment the number of completed steps.
+- `resetProgressBar()`: Function to reset the progress bar to its initial state.
 - `progressBarLoadingState`: Current loading state of the progress bar (`LOADING_STATE` enum).
 - `ProgressBarComponent`: Component to render the progress bar.
 

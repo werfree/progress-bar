@@ -11,6 +11,7 @@ export enum LOADING_STATE {
 interface ProgressBarHookReturn {
   incrementTotalSteps: (inc: number) => void;
   incrementCompletedSteps: (n?: number) => void;
+  resetProgressBar: () => void;
   progressBarLoadingState: LOADING_STATE;
   ProgressBarComponent: React.FC<ProgressBarComponentProps>;
 }
@@ -39,7 +40,15 @@ const useProgressBar = (): ProgressBarHookReturn => {
       return prev + n;
     });
   };
+
+  const resetProgressBar = () => {
+    setProgressWidth(0);
+    setTotalSteps(0);
+    setCompletedSteps(0);
+    setProgressBarLoadingState(LOADING_STATE.INITIAL);
+  };
   useEffect(() => {
+    console.log(totalSteps);
     if (
       (completedSteps === totalSteps && totalSteps !== 0) ||
       completedSteps > totalSteps
@@ -78,6 +87,7 @@ const useProgressBar = (): ProgressBarHookReturn => {
   return {
     incrementTotalSteps,
     incrementCompletedSteps,
+    resetProgressBar,
     progressBarLoadingState,
     ProgressBarComponent,
   };
