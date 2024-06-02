@@ -4,22 +4,24 @@ This example demonstrates how to use the react-progress-bar-hook package to mana
 
 ## Usage Instructions
 
-1. ### Clone the repository:
+### 1. Clone the repository:
 
 ```bash
 git clone https://github.com/werfree/progress-bar
 cd react-progress-bar-hook/example
 ```
 
-2. ### Install dependencies:
-   Ensure you have `react-progress-bar-hook` installed in your project:
+### 2. Install dependencies:
+
+Ensure you have `react-progress-bar-hook` installed in your project:
 
 ```bash
 npm install react-progress-bar-hook
 ```
 
-3. ### Run the example
-   Start the development server to see the progress bar in action:
+### 3. Run the example
+
+Start the development server to see the progress bar in action:
 
 ```bash
 npm run dev
