@@ -4,9 +4,7 @@
 
 A custom React hook for managing and displaying progress bars in React applications. This hook is designed to simplify the process of tracking progress for asynchronous tasks, such as API calls.
 
-![Watch the demo video](https://github.com/werfree/progress-bar/assets/36687951/d3c80410-8548-402b-94c8-4cf924c9a866)
-
-
+[Watch the demo video](https://github.com/werfree/progress-bar/assets/36687951/d3c80410-8548-402b-94c8-4cf924c9a866)
 
 ## Installation
 
