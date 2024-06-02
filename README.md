@@ -1,9 +1,12 @@
 # React Progress Bar Hook
 
 [![NPM](https://img.shields.io/npm/v/react-progress-bar-hook.svg)](https://www.npmjs.com/package/react-progress-bar-hook) ![npm bundle size](https://img.shields.io/bundlephobia/min/react-progress-bar-hook)![GitHub](https://img.shields.io/github/license/werfree/progress-bar)![npm](https://img.shields.io/npm/dw/react-progress-bar-hook.svg)
+
 A custom React hook for managing and displaying progress bars in React applications. This hook is designed to simplify the process of tracking progress for asynchronous tasks, such as API calls.
 
-![Watch the demo video](./public/example.mp4)
+![Watch the demo video](https://github.com/werfree/progress-bar/assets/36687951/d3c80410-8548-402b-94c8-4cf924c9a866)
+
+
 
 ## Installation
 
