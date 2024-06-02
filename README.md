@@ -21,48 +21,6 @@ yarn add react-progress-bar-hook
 To use the ProgressBar hook in your React application, simply import it and start using it in your components:
 
 ```typescript
-import React, { useEffect, useState } from 'react';
-import { useProgressBar, LOADING_STATE } from 'react-progress-bar-hook';
-
-const MyComponent = () => {
-  const {
-    incrementTotalSteps,
-    incrementCompletedSteps,
-    resetProgressBar,
-    progressBarLoadingState,
-    ProgressBarComponent,
-  } = useProgressBar();
-
-  useEffect(() => {
-    incrementTotalSteps(20);
-    const intervalId = setInterval(() => {
-      incrementCompletedSteps();
-    }, 1000);
-
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (progressBarLoadingState === LOADING_STATE.COMPLETED) {
-      resetProgressBar();
-    }
-  }, [progressBarLoadingState]);
-
-  return (
-    <div>
-      {/* Your component JSX */}
-      <ProgressBarComponent
-        progressBarContainerStyle={{ width: "90vw", height: "5px" }}
-        progressBarElementStyle={{ backgroundColor: "blue" }}
-      />
-      <div>Loading State: {progressBarLoadingState}</div>
-    </div>
-  );
-};
-
-export default MyComponent;
 import React from "react";
 import { useProgressBar, LOADING_STATE } from "react-progress-bar-hook";
 
