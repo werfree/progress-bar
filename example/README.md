@@ -1,30 +1,59 @@
-# React + TypeScript + Vite
+# Example Usage of `react-progress-bar-hook`
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This example demonstrates how to use the react-progress-bar-hook package to manage and display a progress bar in a React application. The example sets up a progress bar that increments its progress every second and resets once completed.
 
-Currently, two official plugins are available:
+## Usage Instructions
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. ### Clone the repository:
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-};
+```bash
+git clone https://github.com/werfree/progress-bar
+cd react-progress-bar-hook/example
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+2. ### Install dependencies:
+   Ensure you have `react-progress-bar-hook` installed in your project:
+
+```bash
+npm install react-progress-bar-hook
+```
+
+3. ### Run the example
+   Start the development server to see the progress bar in action:
+
+```bash
+npm run dev
+```
+
+## Explanation
+
+### State Management
+
+- `interval`: Holds the interval ID for clearing it when necessary.
+
+### Hook Usage
+
+- `useProgressBar`: Custom hook to manage the progress bar.
+
+### Lifecycle Management
+
+- `useEffect (initial setup)`: Sets up the total steps and interval for progress.
+- `useEffect (on completion)`: Clears the interval and resets the progress bar when loading is complete.
+
+### Rendering
+
+- `ProgressBarComponent`: Renders the progress bar with specified styles.
+- `Loading State Display`: Shows the current loading state below the progress bar.
+
+## Customization
+
+You can customize the progress bar's appearance by passing different styles to the ProgressBarComponent:
+
+```typescript
+<ProgressBarComponent
+  progressBarContainerStyle={{ width: '100%', height: '10px', backgroundColor: 'lightgray' }}
+  progressBarElementStyle={{ backgroundColor: 'green' }}
+/>
+```
+
+Feel free to modify and extend the example to fit your needs. If you encounter any issues or have suggestions for improvements, please open an issue or submit a pull request on the [GitHub repository](https://github.com/werfree/progress-bar.githttps://github.com/werfree/progress-bar.git).
